@@ -1,0 +1,7 @@
+WORKOUT_SESSION: id, #user_id > USER > id, date, nom, notes
+USER: id, username, password, createdAt, role
+MUSCLE_GROUP: id, name
+
+WORKOUT_SET: id, #workout_session_id > WORKOUT_SESSION > id, #exercise_id > EXERCISE > id, weight, reps, orderIndex
+EXERCISE: id, name
+EXERCISE_MUSCLE_GROUP: id, #exercise_id > EXERCISE > id, #muscle_group_id > MUSCLE_GROUP > id

@@ -1,0 +1,14 @@
+WORKOUT_SET: id, weight, reps, orderIndex
+CONTIENT, 0N WORKOUT_SESSION, 11 WORKOUT_SET
+WORKOUT_SESSION: id, date, nom, notes
+REALISE, 0N USER, 11 WORKOUT_SESSION
+
+CONCERNE, 0N EXERCISE, 11 WORKOUT_SET
+MUSCLE_GROUP: id, name
+:
+USER: id, username, password, createdAt, role
+
+EXERCISE: id, name
+CIBLE, 0N EXERCISE, 0N MUSCLE_GROUP
+:
+:

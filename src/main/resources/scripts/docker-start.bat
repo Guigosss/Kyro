@@ -1,0 +1,1 @@
+docker run --name kyro-postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=Test1234 -e POSTGRES_DB=kyro -p 5433:5432 -d postgres
