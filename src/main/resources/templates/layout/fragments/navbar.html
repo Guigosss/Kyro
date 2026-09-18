@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <nav th:fragment="navbar">
+        <a href="/sessions/create">New session</a>
+
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </nav>
+</body>
+
+</html>

@@ -26,10 +26,7 @@ public class WorkoutSessionService {
                 .orElseThrow(() -> new RuntimeException("Session not found"));
     }
 
-    public void create(
-        WorkoutSessionForm form,
-        Long userId
-    ) {
+    public void create(WorkoutSessionForm form, Long userId) {
         UserEntity user = authService.getUser(userId);
 
         WorkoutSessionEntity entity = mapper.toEntity(form, user);

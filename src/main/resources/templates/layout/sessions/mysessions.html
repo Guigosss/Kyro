@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <div th:fragment="mysessions">
+        <a href="/sessions"><h1>My sessions</h1></a>
+
+        <div th:each="workoutSession, statut : ${sessions}">
+            <h2 th:text="${workoutSession.nom}">Nom de la séance</h2>
+            <p th:text="${workoutSession.date}">Date</p>
+            <p th:text="${workoutSession.notes}">Notes</p>
+            <a th:href="@{/templates/layout/sessions/{id}(id=${workoutSession.id})}">Voir la séance</a>
+        </div>
+    </div>
+</body>
+
+</html>

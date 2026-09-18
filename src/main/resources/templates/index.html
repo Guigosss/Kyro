@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<head>
+    <title>Mes séances</title>
+</head>
+
+<body>
+    <main layout:fragment="content">
+
+        <!-- My sessions -->
+        <div th:replace="~{layout/sessions/mysessions :: mysessions}"></div>
+    </main>
+</body>
+
+</html>
