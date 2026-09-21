@@ -4,7 +4,5 @@ public record WorkoutSetDto(
         Long id,
         Double weight,
         Integer reps,
-        Integer orderIndex,
-        Long sessionId,
-        Long exerciseId
+        Integer orderIndex
 ) {}

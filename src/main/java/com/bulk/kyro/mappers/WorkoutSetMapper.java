@@ -15,9 +15,7 @@ public class WorkoutSetMapper {
                 entity.getId(),
                 entity.getWeight(),
                 entity.getReps(),
-                entity.getOrderIndex(),
-                entity.getSession().getId(),
-                entity.getExercise().getId()
+                entity.getOrderIndex()
         );
     }
 

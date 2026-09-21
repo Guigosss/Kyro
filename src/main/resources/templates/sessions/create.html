@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<body>
+    <main layout:fragment="content">
+        <h1>Create session</h1>
+
+        <div>
+            <form th:action="@{/create}" th:object="${workoutSession}" method="post">
+                <div>
+                    <label for="nom">Session name</label>
+                    <input type="text" id="nom" th:field="*{nom}">
+                    <span th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}" class="error"></span>
+                </div>
+
+                <div>
+                    <label for="date">Date</label>
+                    <input type="date" id="date" th:field="*{date}">
+                    <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="error"></span>
+                </div>
+
+                <div>
+                    <label for="notes">Notes</label>
+                    <textarea id="notes" th:field="*{notes}"></textarea>
+                </div>
+
+                <h2>Exercises</h2>
+
+                <div id="exercises-container"></div>
+
+                <div hidden>
+                    <label for="exercise-template">Exercise</label>
+
+                    <select id="exercise-template">
+                        <option value="">-- Choose an exercise --</option>
+
+                        <option th:each="exercise, statut : ${exercises}"
+                                th:value="${exercise.id}"
+                                th:text="${exercise.name}">
+                        </option>
+                    </select>
+                </div>
+
+                <button type="button" id="add-exercise">Add an exercise</button>
+
+                <div>
+                    <button type="submit">Create session</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <th:block layout:fragment="pageScripts">
+        <script th:src="@{/js/script.js}"></script>
+    </th:block>
+</body>
+
+</html>

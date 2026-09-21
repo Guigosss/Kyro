@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.bulk</groupId>
-    <artifactId>kyro</artifactId>
+    <artifactId>kyro_mvc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>kyro</name>
     <description>kyro</description>

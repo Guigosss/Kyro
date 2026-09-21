@@ -15,7 +15,8 @@ public class WorkoutSessionMapper {
                 entity.getNom(),
                 entity.getDate(),
                 entity.getNotes(),
-                entity.getUser().getId()
+                entity.getUser().getId(),
+                null
         );
     }
 

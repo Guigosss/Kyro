@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title layout:title-pattern="$CONTENT_TITLE - Workout App">Workout App</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
@@ -18,6 +19,7 @@
 
     <!-- Common footer -->
     <div th:replace="~{layout/fragments/footer :: footer}"></div>
+    <th:block layout:fragment="pageScripts"></th:block>
 </body>
 
 </html>

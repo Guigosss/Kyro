@@ -21,22 +21,19 @@ public class WorkoutSessionService {
     private final WorkoutSetService workoutSetService;
     private final WorkoutSessionMapper mapper;
 
-    public WorkoutSessionEntity getSessionDetails(Long id){
-        return workoutSessionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Session not found"));
+    public WorkoutSessionDto getSessionDetails(Long id){
+        return workoutSessionRepository.findById(id).map(mapper::toDto).orElseThrow(
+                () -> new RuntimeException("Session not found"));
     }
 
     public void create(WorkoutSessionForm form, Long userId) {
         UserEntity user = authService.getUser(userId);
 
         WorkoutSessionEntity entity = mapper.toEntity(form, user);
+        WorkoutSessionEntity savedSession = workoutSessionRepository.save(entity);
 
-        List<WorkoutSetEntity> sets = workoutSetService.createSets(form.getSets(), entity);
+        List<WorkoutSetEntity> sets = workoutSetService.createSets(form.getSets(), savedSession);
         workoutSetService.saveAllSets(sets);
-
-        WorkoutSessionEntity saved = workoutSessionRepository.save(entity);
-
-        mapper.toDto(saved);
     }
 
     public List<WorkoutSessionDto> getSessionsByUser(Long userId){

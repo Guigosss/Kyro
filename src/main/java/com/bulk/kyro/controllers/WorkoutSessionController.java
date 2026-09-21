@@ -3,7 +3,9 @@ package com.bulk.kyro.controllers;
 import com.bulk.kyro.entities.UserEntity;
 import com.bulk.kyro.models.workoutsession.WorkoutSessionDto;
 import com.bulk.kyro.models.workoutsession.WorkoutSessionForm;
+import com.bulk.kyro.services.ExerciseService;
 import com.bulk.kyro.services.WorkoutSessionService;
+import com.bulk.kyro.services.WorkoutSetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ import java.util.List;
 public class WorkoutSessionController {
 
     private final WorkoutSessionService workoutSessionService;
+    private final WorkoutSetService workoutSetService;
+    private final ExerciseService exerciseService;
 
     @GetMapping
     public String index(Model model,
@@ -30,14 +34,16 @@ public class WorkoutSessionController {
 
     @GetMapping("/{sessionId}")
     public String detailsSession(@PathVariable Long sessionId, Model model) {
-        model.addAttribute("session", workoutSessionService.getSessionDetails(sessionId));
-        return "details";
+        model.addAttribute("workoutSession", workoutSessionService.getSessionDetails(sessionId));
+        model.addAttribute("sets", workoutSetService.getSetsBySession(sessionId));
+        return "sessions/details";
     }
 
     @GetMapping("/create")
     public String create(Model model) {
-        model.addAttribute("session", new WorkoutSessionForm());
-        return "create";
+        model.addAttribute("workoutSession", new WorkoutSessionForm());
+        model.addAttribute("exercises", exerciseService.getAllExercises());
+        return "sessions/create";
     }
 
     @PostMapping("/create")
@@ -47,8 +53,8 @@ public class WorkoutSessionController {
                          Model model){
 
         if (result.hasErrors()){
-            model.addAttribute("session", sessionForm);
-            return "create";
+            model.addAttribute("workoutSession", sessionForm);
+            return "sessions/create";
         }
 
         workoutSessionService.create(sessionForm, user.getId());
